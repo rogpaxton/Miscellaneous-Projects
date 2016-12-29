@@ -1,5 +1,8 @@
 def translate_with_frame(dna, frames=[1,2,3,-1,-2,-3]):
 
+    if dna == '':
+        dna = 'roger'
+    print dna
     print frames
 
     codontable = {
@@ -101,7 +104,10 @@ def translate_with_frame(dna, frames=[1,2,3,-1,-2,-3]):
     adder_1 = ''
     adder_2 = ''
     adder_3 = ''
-#
+
+    if bases_rvs == []:
+        bases_rvs = ['r', 'o', 'g', 'e', 'r']
+
     for i in bases_rvs:
         sub_list_1.append(i)
         iter += 1
@@ -136,7 +142,6 @@ def translate_with_frame(dna, frames=[1,2,3,-1,-2,-3]):
             adder_3 = ''.join(sub_list_3)
             frame_3.append(adder_3)
             sub_list_3 = []
-
 
     frame1_AA = []
     frame2_AA = []
@@ -189,6 +194,16 @@ def translate_with_frame(dna, frames=[1,2,3,-1,-2,-3]):
     frame_3_AA_op = ''.join(frame_3_AA)
 
     AA_op = []
+
+    if bases[0] == 'g':
+        frame1_AA_op = ''
+        frame2_AA_op = ''
+        frame3_AA_op = ''
+        frame_1_AA_op = ''
+        frame_2_AA_op = ''
+        frame_3_AA_op = ''
+
+
 
     for i in frames:
         if i == 1:

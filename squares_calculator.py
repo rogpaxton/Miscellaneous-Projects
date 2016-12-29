@@ -1,25 +1,25 @@
 def list_squared(m, n):
 
-    import math
+    from math import sqrt
+    from sets import Set
 
-    div_list = []
-    sum_square = 0
-    square_list = []
-    add_list = []
     final_list = []
 
-    for i in range(m, n+1):
-        for j in range (1, i+1):
-            if i%j == 0:
-                div_list.append(j)
-        for k in div_list:
-            sum_square += k*k
-        if math.sqrt(sum_square) - int(math.sqrt(sum_square)) == 0:
-            add_list.append(i)
-            add_list.append(sum_square)
-            final_list.append(add_list)
-            add_list = []
+    if m > 1:
+        final_list = []
+    else:
+        final_list = [[1, 1]]
 
-    print final_list
+    for i in range(m, n+1):
+        div_set = Set()
+        sum_square = 0
+
+        div_set = Set(j for j in range(1, i+1) if i%j == 0)
+
+        for k in div_set:
+            sum_square += k**2
+        if sum_square%2 == 0 and sqrt(sum_square) - int(sqrt(sum_square)) == 0:
+            final_list.append([i, sum_square])
+
     return final_list
     
