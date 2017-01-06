@@ -1,32 +1,47 @@
 def tone_it_down(string):
 
-#lowercase
-    string_list = [i.lower() for i in list(string)]
+    if string == '':
+        return ''
 
-    for index, i in enumerate(string_list[:-5]):
-        if i == 'g' and string_list[index+1] == 'r' and string_list[index+2] == 'u' and string_list[index+3] == 'n' and string_list[index+4] == 't':
-            string_list[index] = '*'
-            string_list[index+1] = '*'
-            string_list[index+2] = '*'
-            string_list[index+3] = '*'
-            string_list[index+4] = '*'
-    for index, i in enumerate(string_list[:-1]):
-        if string_list[index+1] == '!':
-            string_list[index+1] = '.'
-        if i == '.' and string_list[index+1] == '.':
-            string_list[index] = '*'
-    string_list2 = filter(lambda a: a != '*', string_list)
-    for index, i in enumerate(string_list2[:-1]):
-        if i == ' ' and string_list[index] == ' ':
-            string_list2[index] = '*'
-    print string_list2
-    string_list3 = filter(lambda a: a != '*', string_list2)
+    import re
 
-    string = ''.join(string_list3)
-    print string
+    string_list = list(string)
+    for index, i in enumerate(string_list):
+        string_list[index] = i.lower()
+        string = ''.join(string_list)
 
-#exclamation points
+    string = string.replace('!', '')
+    string = string.replace('grunt', '')
 
-#globalists
+    string = re.sub('\.\.+','.', string)
 
-#grunt
+    if string == '':
+        return '.'
+
+    string_list = string.split()
+    counter = 0
+    for index, i in enumerate(string_list):
+        if i == 'globalists' and counter > 0:
+            string_list[index] = 'sociopathic rich guys'
+        elif i == 'globalists':
+            counter += 1
+        elif i == 'globalists.' and counter > 0:
+            string_list[index] = 'sociopathic rich guys.'
+        elif i == 'globalists.':
+            counter += 1
+        elif i == 'globalists,' and counter > 0:
+            string_list[index] = 'sociopathic rich guys,'
+        elif i == 'globalists,':
+            counter += 1
+
+    string = ' '.join(string_list)
+
+    re.sub(' +',' ', string)
+
+    string = string.capitalize()
+    string = string.replace(' .', '.')
+
+    if list(string)[-1] != '.':
+        string = string + '.'
+
+    return string
