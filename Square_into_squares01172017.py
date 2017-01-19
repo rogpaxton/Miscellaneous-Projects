@@ -6,19 +6,14 @@ def decompose(n):
 
     result = [seq for i in range(len(sqr_lst), 0, -1) for seq in combinations(sqr_lst, i) if sum(seq) == n**2]
 
-    master_lst = []
+    final = [0]
     for i in result:
-        ind_lst = []
-        for j in i:
-            ind_lst.append(int(j**(0.5)))
-        master_lst.append(ind_lst)
+        if list(i)[-1] > final[-1]:
+            final = list(i)
 
-    op = [0]
+    master_lst = []
+    for i in final:
+        master_lst.append(int(i**(0.5)))
 
-    for i in master_lst:
-        if i[:-1] > op[:-1]:
-            op = i
-    print op
 
-    return op
-    
+    return master_lst
