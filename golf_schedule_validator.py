@@ -43,15 +43,11 @@ def valid(a):
         count = []
         for j in a:
             for k in j:
-                lst = list(k)
-                for l in lst:
-                    if i in list(k) and l not in count:
+                if i in list(k):
+                    for l in list(k):
                         count.append(l)
-        print i
-        print count
-        if len(count) != num_partners:
+        if len(Set(count))-1 != num_partners:
             return False
-    print a
 
 
     return op
