@@ -1,4 +1,7 @@
 def decodeBitsAdvanced(bits):
+
+    from itertools import groupby
+
     # ToDo: Accept 0's and 1's, return dots, dashes and spaces
     bits = bits.strip('0')
     print bits
@@ -24,6 +27,12 @@ def decodeBitsAdvanced(bits):
             uno_count = 1
         elif i == '1' and bits_lst[index] == '0':
             zed_count = 1
+
+    broken = ["".join(g) for k, g in groupby(bits)]
+
+    op_lst = []
+
+
 
 
 def decodeMorse(morseCode):
