@@ -13,18 +13,23 @@ def int_to_english(n):
     for i in triplet_list:
         i.reverse()
 
+    triplet_list.reverse()
+
     power = 0
 
     op_list = []
 
-    while len(triplet_list) > 0:
+    counter = 0
+
+
+    while len(triplet_list) > counter:
         for i in triplet_list:
             if len(i) == 1:
                 i.insert(0, '0')
                 i.insert(0, '0')
             elif len(i) == 2:
                 i.insert(0, '0')
-
+            print triplet_list
             if i[0] == '1':
                 op_list.append('one hundred')
             elif i[0] == '2':
@@ -88,7 +93,7 @@ def int_to_english(n):
                     op_list.append('nineteen')
             elif i[1] == '2':
                 op_list.append('twenty')
-                if i[0] == '0':
+                if i[2] == '0':
                     pass
                 elif i[2] == '1':
                     op_list.append('one')
@@ -110,7 +115,7 @@ def int_to_english(n):
                     op_list.append('nine')
             elif i[1] == '3':
                 op_list.append('thirty')
-                if i[0] == '0':
+                if i[2] == '0':
                     pass
                 elif i[2] == '1':
                     op_list.append('one')
@@ -153,7 +158,8 @@ def int_to_english(n):
                 elif i[2] == '9':
                     op_list.append('nine')
             elif i[1] == '5':
-                if i[0] == '0':
+                op_list.append('fifty')
+                if i[2] == '0':
                     pass
                 elif i[2] == '1':
                     op_list.append('one')
@@ -175,7 +181,7 @@ def int_to_english(n):
                     op_list.append('nine')
             elif i[1] == '6':
                 op_list.append('sixty')
-                if i[0] == '0':
+                if i[2] == '0':
                     pass
                 elif i[2] == '1':
                     op_list.append('one')
@@ -197,7 +203,7 @@ def int_to_english(n):
                     op_list.append('nine')
             elif i[1] == '7':
                 op_list.append('seventy')
-                if i[0] == '0':
+                if i[2] == '0':
                     pass
                 elif i[2] == '1':
                     op_list.append('one')
@@ -218,8 +224,8 @@ def int_to_english(n):
                 elif i[2] == '9':
                     op_list.append('nine')
             elif i[1] == '8':
-                op_list.append('eight')
-                if i[0] == '0':
+                op_list.append('eighty')
+                if i[2] == '0':
                     pass
                 elif i[2] == '1':
                     op_list.append('one')
@@ -241,7 +247,7 @@ def int_to_english(n):
                     op_list.append('nine')
             elif i[1] == '9':
                 op_list.append('ninety')
-                if i[0] == '0':
+                if i[2] == '0':
                     pass
                 elif i[2] == '1':
                     op_list.append('one')
@@ -262,8 +268,32 @@ def int_to_english(n):
                 elif i[2] == '9':
                     op_list.append('nine')
 
-        triplet_list.pop(0)
+            if len(triplet_list) - counter == 1:
+                pass
+            elif len(triplet_list) - counter  == 2:
+                op_list.append('thousand')
+            elif len(triplet_list) - counter  == 3:
+                op_list.append('million')
+            elif len(triplet_list) - counter  == 4:
+                op_list.append('billion')
+            elif len(triplet_list) - counter  == 5:
+                op_list.append('trillion')
+            elif len(triplet_list) - counter  == 6:
+                op_list.append('quadrillion')
+            elif len(triplet_list) - counter  == 7:
+                op_list.append('quintillion')
+            elif len(triplet_list) - counter  == 8:
+                op_list.append('sextillion')
+            elif len(triplet_list) - counter  == 9:
+                op_list.append('septillion')
+            elif len(triplet_list) - counter  == 10:
+                op_list.append('octillion')
+
+#            triplet_list.pop(0)
+            counter += 1
 
     op = ' '.join(op_list)
+
     print op
+
     return op
